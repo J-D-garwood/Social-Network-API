@@ -1,27 +1,19 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-//something goes here..
+const { userSeeds } = require('./data');
 
-const userData = [
-    ["bubbles", "bubbles@mail.com", ""]
-]
-
-connection.on('error', (err) => err);
+connection.on('error', (err) => console.log(err));
 
 connection.once('open', async () => {
-    console.log('connected')
+    console.log('connected');
 
-    let thoughtCheck = await connection.db.listCollections({ name: 'thoughts' }).toArray();
-    if (thoughtCheck.length) {
-        await connection.dropCollection('thoughts');
-    }
+    const users = userSeeds;
+    //const thoughts = thoughtSeeds;
 
-    let usersCheck = await connection.db.listCollections({ name: 'users' }).toArray();
-    if (usersCheck.length) {
-      await connection.dropCollection('users');
-    }
+    await User.collection.insertMany(users);    
 
-    const users = [];
-
+    console.log('Database successfully seeded');
+    process.exit(0);
 
 })
+
