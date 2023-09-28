@@ -20,6 +20,11 @@ module.exports = {
         try {
             const thought = await Thought.create(req.body);
 
+            const user = await User.findOneAndUpdate(
+                {username: thought.username },
+                {$addToSet: { thoughts: thought }},
+                { runValidators: true, new: true }
+            )
             res.json(thought);
         } catch (err) {
             res.status(500).json(err);
@@ -44,7 +49,7 @@ module.exports = {
     async updateThought(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
-                { _id: req.params.userId },
+                { _id: req.params.thoughtId },
                 { $set: req.body },
                 { runValidators: true, new: true }
             )
@@ -52,6 +57,12 @@ module.exports = {
             if (!thought) {
                 res.status(404).json( {message: 'No thought with this ID '})
             }
+
+            const user = await User.findOneAndUpdate(
+                {username: thought.username },
+                {$addToSet: { thoughts: thought }},
+                { runValidators: true, new: true }
+            )
 
             res.json(thought);
         } catch (err) {
@@ -65,6 +76,11 @@ module.exports = {
             if (!thought) {
                 return res.status(404).json({ message: 'No such thought exists' });
             }
+            const user = await User.findOneAndUpdate(
+                {username: thought.username },
+                {$pull: { thoughts: {_id: req.params.thoughtId}}},
+                { runValidators: true, new: true }
+            )
 
             res.json({message: 'Thought successfully removed' });
         } catch (err) {
