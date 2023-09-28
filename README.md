@@ -26,19 +26,18 @@ No collaborators on this project
 
 N/a
 
-## Video of GETs
+## Video of GETs and starting application
 
-[Image of app](./public/images/image_of_deployed.png)
-
+[GET](./assets/GET.gif)
 
 ## Video of POSTs
 
-[Image of app](./public/images/image_of_deployed.png)
+[Image of app](./assets/POST.mp4)
 
 ## Video of PUTs
 
-[Image of app](./public/images/image_of_deployed.png)
+[Image of app](./assets/PUT.mp4)
 
 ## Video of DELETEs
 
-[Image of app](./public/images/image_of_deployed.png)
+[Image of app](./assets/DELETE.mp4)
