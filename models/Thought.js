@@ -22,7 +22,6 @@ const thoughtSchema = new Schema(
     },
     {
         toJSON:{
-            getters: true, //add timestamp formatter
             virtuals: true,
         },
         id: false,
