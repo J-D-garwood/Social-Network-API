@@ -1,7 +1,10 @@
+// importing models and ObjectId 
 const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
+// exporting CRUD request functions for thought model
 module.exports = {
+    // function to get all thoughts
     async getThoughts(req, res) {
         try {
             const thoughts = await Thought.find();
@@ -16,6 +19,7 @@ module.exports = {
             return res.status(500).json(err);
         }
     },
+    // function to add a new thought
     async newThought(req, res) {
         try {
             const thought = await Thought.create(req.body);
@@ -30,6 +34,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // function to get a single thought
     async getOneThought(req, res) {
         try {
             const thought = await Thought.findOne({ _id: req.params.thoughtId }).select('-__v');
@@ -46,6 +51,7 @@ module.exports = {
             return res.status(500).json(err);
         }
     },
+    // function to update a single thought
     async updateThought(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
@@ -69,6 +75,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // function to delete one thought
     async deleteThought(req, res) {
         try {
             const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId })
@@ -88,6 +95,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    //function to add a reaction
     async addReaction(req, res) {
         console.log('You are adding a reaction');
         console.log(req.body);
@@ -109,6 +117,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // function to delete a reaction
     async pullReaction(req, res) {
         try {
         const thought = await Thought.findOneAndUpdate(

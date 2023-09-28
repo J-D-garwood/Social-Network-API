@@ -1,5 +1,5 @@
 const { Schema, Types } = require('mongoose');
-
+// initialising reaction schema for usage in thought model
 const reactionSchema = new Schema(
     {
         reactionId: {

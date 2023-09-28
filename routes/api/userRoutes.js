@@ -1,3 +1,4 @@
+//establishing user routes
 const router = require('express').Router()
 const {
     getUsers,

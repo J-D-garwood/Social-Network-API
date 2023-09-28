@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const thoughtSchema = require('./Thought');
-
+// initialising user schema
 const userSchema = new Schema(
     {
         username: {
@@ -31,10 +31,12 @@ const userSchema = new Schema(
         id: false,
     }
 );
+
+//adding friend count virtual
 userSchema.virtual('friendCount').get( function() {
     return this.friends.length;
 })
-
+//establising user model
 const User = model('user', userSchema)
 
 module.exports = User;

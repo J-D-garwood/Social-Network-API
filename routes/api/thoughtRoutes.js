@@ -1,3 +1,4 @@
+//establishing thought routes
 const router = require('express').Router();
 const {
     getThoughts,

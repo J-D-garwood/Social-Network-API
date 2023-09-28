@@ -1,9 +1,10 @@
+// importing...
 const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
-// MORE TO BE ADDED HERE!!
 
 module.exports = {
+    // function to get all users
     async getUsers(req, res) {
         try {
             const users = await User.find();
@@ -18,6 +19,7 @@ module.exports = {
             return res.status(500).json(err);
         }
     },
+    // function to create a new user
     async createUser(req, res) {
         try {
             const user = await User.create(req.body);
@@ -26,6 +28,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // function to get one user
     async getOneUser(req, res) {
         try {
             const user = await User.findOne({ _id: req.params.userId }).select('-__v');
@@ -39,6 +42,7 @@ module.exports = {
             return res.status(500).json(err);
         }
     },
+    // function to delete one user
     async deleteUser(req, res) {
         try {
             const user = await User.findOneAndRemove({ _id: req.params.userId })
@@ -54,6 +58,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // function to update one user
     async updateUser(req, res) {
         try {
             const user = await User.findOneAndUpdate(
@@ -71,6 +76,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // function to add a friend to a user (and vice versa that user to their new friend)
     async addNewFriend(req, res) {
         try {
 
@@ -96,6 +102,7 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    // function to remove a friend
     async removeFriend(req, res) {
         try {
             const user = await User.findOneAndUpdate(

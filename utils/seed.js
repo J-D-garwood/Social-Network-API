@@ -1,3 +1,4 @@
+//seeding mongoDB initially
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
 const { userSeeds } = require('./data');
@@ -8,7 +9,6 @@ connection.once('open', async () => {
     console.log('connected');
 
     const users = userSeeds;
-    //const thoughts = thoughtSeeds;
 
     await User.collection.insertMany(users);    
 
